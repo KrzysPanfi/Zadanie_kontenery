@@ -1,20 +1,18 @@
 public  class Kontener {
-    private Cargo cargo;
-    private int cargomass_kg;
+    private double cargomass_kg;
     private int height_cm;
     private int self_mass_kg;
     private int depth_cm;
     private int max_cargo_mass;
 
 
-    public Kontener(int cargomass_kg, int height_cm, int depth_cm,int self_mass_kg, int max_cargo_mass, Cargo cargo) {
+    public Kontener(double cargomass_kg, int height_cm, int depth_cm,
+                    int self_mass_kg, int max_cargo_mass) {
         this.cargomass_kg = cargomass_kg;
         this.height_cm = height_cm;
         this.depth_cm=depth_cm;
         this.self_mass_kg = self_mass_kg;
         this.max_cargo_mass = max_cargo_mass;
-        this.cargo=cargo;
-
     }
     public void emptyCargo(){
         cargomass_kg=0;
@@ -36,10 +34,10 @@ public  class Kontener {
     }
 
     public int getCargomass_kg() {
-        return cargomass_kg;
+        return (int) cargomass_kg;
     }
 
-    public void setCargomass_kg(int cargomass_kg) {
+    public void setCargomass_kg(double cargomass_kg) {
         this.cargomass_kg = cargomass_kg;
     }
 
@@ -75,12 +73,6 @@ public  class Kontener {
         this.max_cargo_mass = max_cargo_mass;
     }
 
-    public Cargo getCargo() {
-        return cargo;
-    }
 
-    public void setCargo(Cargo cargo) {
-        this.cargo = cargo;
-    }
 }
 
