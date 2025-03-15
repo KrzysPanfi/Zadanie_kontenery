@@ -5,7 +5,7 @@ public class GContainer extends Container implements IHazardNotifier  {
    public GContainer(int cargomass_kg, int height_cm, int depth_cm,
                      int self_mass_kg, int max_cargo_mass, double pressure_atm) {
             super(cargomass_kg,height_cm,depth_cm,self_mass_kg,max_cargo_mass);
-       setId("KON-"+"G-"+ UUID.randomUUID());
+       setId("KON-"+"G-"+ getId());
             this.pressure_atm=pressure_atm;
         }
 

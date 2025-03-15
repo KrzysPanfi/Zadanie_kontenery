@@ -1,5 +1,3 @@
-import java.util.UUID;
-
 public class CContainer extends Container {
     private Cargo cargo;
     private Double temperature;
@@ -9,7 +7,7 @@ public class CContainer extends Container {
         super(cargomass_kg, height_cm, depth_cm, self_mass_kg, max_cargo_mass);
         setTemperature(temperature);
         this.cargo=cargo;
-        setId("KON-"+"C-"+ UUID.randomUUID());
+        setId("KON-" + "C-" + getId());
     }
 
     public Cargo getCargo() {
@@ -25,11 +23,11 @@ public class CContainer extends Container {
     }
 
     public void setTemperature(Double temperature) {
-        if(temperature>=cargo.getTemperature()) {
+        if (temperature >= cargo.getTemperature()) {
             this.temperature = temperature;
         }
         else {
-            System.out.println("Za niska temperature");
+            System.out.println("Temperature too low");
         }
     }
 }

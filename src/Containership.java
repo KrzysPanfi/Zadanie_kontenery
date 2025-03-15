@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Containership {
     private ArrayList<Container> containers;
@@ -16,19 +15,19 @@ public class Containership {
         this.max_capacity = max_capacity;
         this.max_weight_tons = max_weight_tons;
         if(containers.isEmpty()){
-            this.currentmass_tons=0;
+            this.currentmass_tons = 0;
         }
         else {
             for(Container c:containers){
                 this.currentmass_tons=
-                        this.currentmass_tons+c.getCargomass_kg()*0.001
-                                +c.getSelf_mass_kg()*0.001;
+                        this.currentmass_tons + c.getCargomass_kg() * 0.001
+                                + c.getSelf_mass_kg() * 0.001;
             }
         }
     }
     public void loadcontainer(Container container) throws OverfillException{
-      try {
-          if (containers.size() > max_capacity && currentmass_tons + container.getSelf_mass_kg() * 0.001
+
+        if (containers.size() + 1 <= max_capacity && currentmass_tons + container.getSelf_mass_kg() * 0.001
                   + container.getCargomass_kg() * 0.001 < max_weight_tons) {
               containers.add(container);
               this.currentmass_tons =
@@ -36,12 +35,10 @@ public class Containership {
           } else {
               throw new OverfillException("Overfill of container ship");
           }
-      }
-      catch (OverfillException e){
-          System.out.println(e.getMessage());
-      }
+
     }
-    public void loadlistofcontainers(List<Container>List) throws OverfillException {
+
+    public void loadlistofcontainers(ArrayList<Container> List) throws OverfillException {
         for(Container c:List){
             loadcontainer(c);
         }
@@ -53,10 +50,14 @@ public class Containership {
     public void replacecontainer(int index,Container newcontainer){
                 containers.set(index,newcontainer);
     }
-    public void transfercontainer(Container container,Containership newcontainership){
-        Container container1=searchcontainer(container);
-        this.containers.remove(container1);
-        newcontainership.containers.add(container1);
+
+    public void transfercontainer(Container container, Containership newcontainership) throws OverfillException {
+        if (searchcontainer(container) != null) {
+            this.containers.remove(container);
+            newcontainership.loadcontainer(container);
+        } else {
+            System.out.println("Container is not on the ship");
+        }
     }
 
     public ArrayList<Container> getContainers() {
@@ -105,7 +106,7 @@ public class Containership {
 
     public Container searchcontainer(Container container){
         for(Container c:containers){
-            if(c.equals(container)){
+            if (c.getId().equals(container.getId())) {
                 return c;
             }
         }

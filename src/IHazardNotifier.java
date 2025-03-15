@@ -1,3 +1,3 @@
-public interface IHazardNotifier {
-    public void NotifyHazard();
+interface IHazardNotifier {
+     void NotifyHazard();
 }

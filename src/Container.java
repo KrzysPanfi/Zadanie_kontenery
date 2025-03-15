@@ -1,4 +1,5 @@
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public  class Container {
     private double cargomass_kg;
@@ -6,6 +7,7 @@ public  class Container {
     private int self_mass_kg;
     private int depth_cm;
     private int max_cargo_mass;
+    private static final AtomicInteger atomicInteger = new AtomicInteger(0);
     private String id;
 
 
@@ -13,30 +15,27 @@ public  class Container {
                      int self_mass_kg, int max_cargo_mass) {
         this.cargomass_kg = cargomass_kg;
         this.height_cm = height_cm;
-        this.depth_cm=depth_cm;
+        this.depth_cm = depth_cm;
         this.self_mass_kg = self_mass_kg;
         this.max_cargo_mass = max_cargo_mass;
-        this.id=null;
+        this.id = String.valueOf(nextid());
     }
     public void emptyCargo(){
         cargomass_kg=0;
     }
-    public void loadcargo(int kg) throws Exception  {
 
-        try {
-            if (this.cargomass_kg+kg > this.max_cargo_mass) {
+    public static int nextid() {
+        return atomicInteger.incrementAndGet();
+    }
+
+    public void loadcargo(int kg) throws OverfillException {
+            if (this.cargomass_kg + kg > this.max_cargo_mass) {
                 throw new OverfillException("Overfill of container");
             }
             else {
                 this.cargomass_kg=this.cargomass_kg+kg;
             }
         }
-        catch (OverfillException e){
-            System.out.println(e.getMessage());
-        }
-
-    }
-
     public int getCargomass_kg() {
         return (int) cargomass_kg;
     }
