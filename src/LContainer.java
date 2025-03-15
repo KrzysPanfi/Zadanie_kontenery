@@ -1,17 +1,18 @@
 import java.util.UUID;
 
-public class LKontener extends Kontener implements IHazardNotifier  {
-private String  id;
+public class LContainer extends Container implements IHazardNotifier  {
 private boolean dangercargo;
-   public LKontener(boolean dangercargo,int cargomass_kg, int height_cm, int depth_cm,int self_mass_kg, int max_cargo_mass) {
+   public LContainer(boolean dangercargo, int cargomass_kg, int height_cm,
+                     int depth_cm, int self_mass_kg, int max_cargo_mass) {
        super(cargomass_kg,height_cm,depth_cm,self_mass_kg,max_cargo_mass);
-        this.id="KON-"+"L-"+ UUID.randomUUID();
+       setId("KON-"+"L-"+ UUID.randomUUID());
         this.dangercargo=dangercargo;
     }
 
     @Override
     public void NotifyHazard() {
-        System.out.println("Niebezpieczna_sytuacja"+this.id);
+        System.out.println
+                ("Niebezpieczna_sytuacja"+getId());
     }
 
     public void loadcargo(int kg) throws Exception {
@@ -34,13 +35,6 @@ private boolean dangercargo;
                 NotifyHazard();
             }
         }
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public boolean isDangercargo() {
         return dangercargo;
