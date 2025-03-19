@@ -11,8 +11,7 @@ public class GContainer extends Container implements IHazardNotifier  {
 
         @Override
         public void NotifyHazard() {
-            System.out.println("Dangerous_situation"
-                    +getId());
+            System.out.println("Dangerous situation " +getId());
         }
 
 

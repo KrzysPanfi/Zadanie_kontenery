@@ -1,7 +1,7 @@
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public  class Container {
+public abstract class Container {
     private double cargomass_kg;
     private int height_cm;
     private int self_mass_kg;
@@ -33,7 +33,7 @@ public  class Container {
                 throw new OverfillException("Overfill of container");
             }
             else {
-                this.cargomass_kg=this.cargomass_kg+kg;
+                this.cargomass_kg = this.cargomass_kg + kg;
             }
         }
     public int getCargomass_kg() {

@@ -10,6 +10,12 @@ public class CContainer extends Container {
         setId("KON-" + "C-" + getId());
     }
 
+    @Override
+    public void emptyCargo() {
+        super.emptyCargo();
+        this.cargo = null;
+    }
+
     public Cargo getCargo() {
         return cargo;
     }

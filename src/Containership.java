@@ -27,12 +27,17 @@ public class Containership {
     }
     public void loadcontainer(Container container) throws OverfillException{
 
-        if (containers.size() + 1 <= max_capacity && currentmass_tons + container.getSelf_mass_kg() * 0.001
-                  + container.getCargomass_kg() * 0.001 < max_weight_tons) {
+        if (containers.size() + 1 <= max_capacity &&
+                currentmass_tons + container.getSelf_mass_kg() * 0.001
+                  + container.getCargomass_kg() * 0.001 < max_weight_tons)
+          {
               containers.add(container);
               this.currentmass_tons =
-                      this.currentmass_tons + container.getCargomass_kg() * 0.001 + container.getSelf_mass_kg() * 0.001;
-          } else {
+                      this.currentmass_tons + container.getCargomass_kg()
+                              * 0.001 + container.getSelf_mass_kg() * 0.001;
+          }
+        else
+          {
               throw new OverfillException("Overfill of container ship");
           }
 

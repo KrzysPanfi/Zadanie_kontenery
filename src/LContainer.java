@@ -22,14 +22,17 @@ private boolean dangercargo;
            per = 0.9;
        }
             try {
-                if (this.getCargomass_kg() + kg > this.getMax_cargo_mass()*per) {
+                if (this.getCargomass_kg() + kg > this.getMax_cargo_mass()*per)
+                {
                     throw new OverfillException();
                 }
-                else {
+                else
+                {
                     this.setCargomass_kg(this.getCargomass_kg() + kg);
                 }
             }
-            catch (OverfillException e){
+            catch (OverfillException e)
+            {
                 NotifyHazard();
             }
         }
